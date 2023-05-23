@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is it New Year's</title>
+    <link href="{% static 'newyear/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    {% if newyear %}
+        <h1>YES</h1>
+    {% else %}
+        <h1>NO</h1>
+    {% endif %}
+</body>
+</html>
+
+sqlite3 flights.db
+.database flights.db
+
+CREATE TABLE flights (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    origin TEXT NOT NULL,
+    destination TEXT NOT NULL,
+    duration INTEGER NOT NULL
+);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('New York', 'London', 415);
+INSERT INTO flights (origin, destination, duration) VALUES ('Shanghai', 'Paris', 760);
+INSERT INTO flights (origin, destination, duration) VALUES ('Istanbul', 'Tokyo', 700);
+INSERT INTO flights (origin, destination, duration) VALUES ('New York', 'Paris', 435);
+INSERT INTO flights (origin, destination, duration) VALUES ('Moscow', 'Paris', 245);
+INSERT INTO flights (origin, destination, duration) VALUES ('Lima', 'New York', 455);
+SELECT * FROM flights;
+SELECT * FROM flights WHERE origin = 'New York';
