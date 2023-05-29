@@ -6,6 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posts</title>
 </head>
+<style>
+    @keyframes hide{
+        0%{
+            opacity: 1;
+            height: 100%;
+            line-height: 100%;
+            padding: 20px;
+            margin: 10px;
+        }
+        75%{
+            opacity: 0;
+            height: 100%;
+            line-height: 100%;
+            padding: 20px;
+            margin: 10px;
+        }
+        100%{
+            opacity: 0;
+            height: 0px;
+            line-height: 0px;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+    .post{
+        display: flex;
+        background: green;
+        margin: 10px;
+        font-size: 50px;
+        padding: 20px;
+        justify-content: space-between;
+        animation-name: hide;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+    }
+    button{
+        width: 80px;
+        height: 50px;
+        font-size: 20px;
+    }
+    body{
+        padding-bottom: 50px;
+    }
+</style>
 <script>
     // Start with first post
     let counter = 1;
@@ -21,6 +66,16 @@
             load();
         }
     }
+
+    document.addEventListener('click', event => {
+        const element = event.target;
+        if(element.className === 'hide') {
+            element.parentElement.style.animationPlayState = 'running';
+            element.parentElement.addEventListener('animationend', () => {
+                element.parentElement.remove();
+            });
+        }
+    });
 
     //Load next set of posts
     function load() {
@@ -42,13 +97,13 @@
     function add_post(contents) {
 
         //Create new post
-        const post = document.createElement('div');
-        post.className = 'post';
-        post.innerHTML = contents;
+        const post = document.createElement("div");
+        post.className = "post";
+        post.innerHTML = `${contents} <button class="hide">Hide</button>`;
 
         // dd post to DOM
-        document.querySelector('#posts').append(post);
-    }
+        document.querySelector("#posts").append(post);
+    };
 </script>
 <body>
     <div id="posts"></div>   

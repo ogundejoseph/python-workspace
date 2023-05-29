@@ -1,3 +1,4 @@
+import json
 import time
 
 from django.http import JsonResponse
@@ -20,3 +21,8 @@ def posts(request):
 
     # Artificially delay speed of response
     time.sleep(1)
+
+    # Return list of posts
+    return JsonResponse({"posts": data}, safe=False)
+
+        
